@@ -10,6 +10,10 @@ RUN npm install --legacy-peer-deps
 # Copy source code
 COPY . .
 
+# Generate Prisma client
+RUN npx prisma generate
+
+# Build NestJS
 RUN npm run build
 
 # Expose port (default NestJS port is 3000)
