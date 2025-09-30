@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    container_name: my_nestjs
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:admin123@postgres:5432/mydb
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: my_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

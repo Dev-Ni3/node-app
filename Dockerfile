@@ -10,6 +10,7 @@ RUN npm install --legacy-peer-deps
 # Copy source code
 COPY . .
 
+RUN npm run build
 
 # Expose port (default NestJS port is 3000)
 EXPOSE 3000
